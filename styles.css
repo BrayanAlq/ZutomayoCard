@@ -22,7 +22,7 @@ body {
 #app {
   display: grid;
   place-items: center;
-  height: 90vh;
+  height: 95vh;
 }
 
 button {
