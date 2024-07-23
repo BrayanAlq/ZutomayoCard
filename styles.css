@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: #090909;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  margin: 0;
+  timeline-scope: --myScroller;
+  view-timeline-axis: x;
+}
+
+#app {
+  display: grid;
+  place-items: center;
+  height: 90vh;
+}
+
+button {
+  position: absolute;
+  transform: translateY(-540%);
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#prev {
+  left: 10px;
+}
+
+#next {
+  right: 10px;
+}
+
+h1 {
+  margin: 0;
+  margin-top: 10px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0;
+  margin: 0;
+  width: 90vw;
+  height: 90%;
+  place-items: center;
+  scroll-snap-type: x mandatory;
+  scroll-timeline-name: --myScroller;
+  scroll-timeline-axis: x;
+}
+
+li {
+  flex: 1 0 15cqw;
+  view-timeline: --cover;
+  view-timeline-axis: inline;
+  animation: z both linear;
+  animation-timeline: --cover;
+  animation-range: cover;
+}
+
+li:not([aria-hidden]) {
+  scroll-snap-align: center;
+}
+
+li img {
+  border-radius: 13px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: hsl(10 80% 80%);
+  -webkit-box-reflect: below 1vmin
+    linear-gradient(transparent 0%, hsl(0 0% 100% / 0.3) 100%);
+  /* Ajuste adicional: Intenta diferentes valores de transparencia */
+  filter: brightness(1) contrast(1.1);
+  animation: cover-flow both linear;
+  animation-timeline: --cover;
+  animation-range: cover;
+}
+
+.image-wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 100vmin;
+  animation: shrink both linear;
+  animation-timeline: --cover;
+  animation-range: cover;
+}
+
+@keyframes z {
+  0% {
+    z-index: 0;
+  }
+  50% {
+    z-index: 4;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    scale: 0.55;
+    opacity: 0;
+    transform-origin: -150% 50%;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+    scale: 1;
+    transform-origin: 50% 50%;
+  }
+  40% {
+    scale: 1;
+    opacity: 1;
+    transform: translate3d(0, 0, 0vmin);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 0, 15vmin);
+  }
+  60% {
+    scale: 1;
+    opacity: 1;
+    transform: translate3d(0, 0, 0vmin);
+  }
+  90% {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    scale: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    scale: 0.55;
+    opacity: 0;
+    transform-origin: 250% 50%;
+  }
+}
+
+@keyframes cover-flow {
+  0% {
+    transform: translate(-50%, 0) rotateY(-33deg);
+  }
+  20% {
+    scale: 1;
+    transform: translate(0%, 0) rotateY(-33deg);
+  }
+  40% {
+    transform: translate(15%, 0) rotateY(-20deg);
+  }
+  50% {
+    scale: 1.5;
+    transform: translate(0, 0) rotateY(0deg);
+  }
+  60% {
+    transform: translate(-15%, 0) rotateY(20deg);
+  }
+  80% {
+    scale: 1;
+    transform: translate(0%, 0) rotateY(33deg);
+  }
+  100% {
+    transform: translate(50%, 0) rotateY(33deg);
+  }
+}
+
+#info {
+  z-index: 100;
+  flex-direction: column;
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  height: 84px;
+  overflow-y: hidden;
+}
+
+#name-wrapper {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1s;
+  animation: name-translate 0.1s both linear;
+  animation-timeline: --myScroller;
+}
+
+.name {
+  font-size: 48px;
+  animation: blink both linear;
+  animation-timeline: --myScroller;
+  animation-range: cover;
+  transition: background 0.5s ease;
+}
+
+@keyframes name-translate {
+  from {
+    transform: translateY(124px);
+  }
+  to {
+    transform: translateY(-7535px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  10% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  10%,
+  15% {
+    filter: blur(0) contrast(1);
+  }
+  20% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  24%,
+  24% {
+    filter: blur(0) contrast(1);
+  }
+  25%,
+  27% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  30%,
+  34% {
+    filter: blur(0) contrast(1);
+  }
+  35%,
+  37% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  40%,
+  44% {
+    filter: blur(0) contrast(1);
+  }
+  45%,
+  47% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  50%,
+  54% {
+    filter: blur(0) contrast(1);
+  }
+  55%,
+  56% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  58%,
+  64% {
+    filter: blur(0) contrast(1);
+  }
+  64%,
+  66% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  67%,
+  70%,
+  73% {
+    filter: blur(0) contrast(1);
+  }
+  73%,
+  73% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  74%,
+  82% {
+    filter: blur(0) contrast(var(--contrast));
+  }
+  83% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+  85%,
+  93% {
+    filter: blur(0) contrast(var(--contrast));
+  }
+  93%,
+  100% {
+    filter: blur(var(--blur)) contrast(var(--contrast));
+  }
+}
+
+#info li {
+  place-items: center;
+  display: flex;
+  animation: info-opacity both linear;
+  animation-timeline: ---cover;
+  animation-range: cover;
+}
+
+.info-wrapper {
+  display: flex;
+}
+
+@keyframes info-opacity {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
